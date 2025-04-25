@@ -6,6 +6,14 @@ terraform {
     }
   }
 
+  cloud {
+    hostname = "app.terraform.io"
+    organization = "oliver-binns"
+    workspaces {
+      tags = ["personal-infra"]
+    }
+  }
+
   required_version = ">= 1.2.0"
 }
 
