@@ -8,6 +8,11 @@ on:
 permissions:
   pull-requests: write
 
+env:
+  TF_CLOUD_ORGANIZATION: "oliver-binns"
+  TF_TOKEN_app_terraform_io: "${{ secrets.TF_API_TOKEN }}"
+  TF_WORKSPACE: "prod"
+
 jobs:
   plan:
     runs-on: ubuntu-latest
