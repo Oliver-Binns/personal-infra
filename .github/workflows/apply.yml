@@ -1,0 +1,38 @@
+name: Apply Infrastructure Updates
+
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  pull-requests: write
+
+env:
+  TF_CLOUD_ORGANIZATION: "oliver-binns"
+  TF_TOKEN_app_terraform_io: "${{ secrets.TF_API_TOKEN }}"
+  TF_WORKSPACE: "prod"
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+
+      - name: Create service-account.json
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON_BASE64: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON_BASE64 }}
+        run: |
+          echo $GOOGLE_SERVICE_ACCOUNT_JSON_BASE64 | base64 --decode > ~/service-account.json
+
+      - name: Terraform Init
+        id: init
+        run: terraform init -input=false
+
+      - name: Terraform Apply
+        id: apply
+        run: terraform apply -no-color -input=false
+
+      - name: Clean-up
+        if: always()
+        run: rm ~/service-account.json
