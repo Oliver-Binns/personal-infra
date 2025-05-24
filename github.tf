@@ -1,5 +1,10 @@
 provider "github" { }
 
+import {
+  to = github_repository.ios
+  id = "crescendo"
+}
+
 resource "github_repository" "ios" {
   name        = "Crescendo"
   description = "This app allows you to play Apple Music playlists for timed musical party games, such as pass the parcel or musical chairs."
