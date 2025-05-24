@@ -1,4 +1,7 @@
-provider "github" { }
+provider "github" {
+  owner = "oliver-binns"
+  token = var.github_token
+}
 
 import {
   to = github_repository.ios
@@ -21,12 +24,12 @@ resource "github_repository" "ios" {
 
 resource "github_branch_protection" "ios" {
   repository_id = github_repository.ios.node_id
-  pattern          = "main"
- 
+  pattern       = "main"
+
   require_signed_commits = true
 
   required_pull_request_reviews {
-    dismiss_stale_reviews = true
+    dismiss_stale_reviews      = true
     require_code_owner_reviews = true
   }
 }
