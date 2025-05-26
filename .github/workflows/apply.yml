@@ -32,7 +32,7 @@ jobs:
 
       - name: Terraform Apply
         id: apply
-        run: terraform apply -no-color -input=false
+        run: terraform apply -no-color -auto-approve -input=false
 
       - name: Clean-up
         if: always()
