@@ -1,4 +1,10 @@
 name,imported,description,status_check
+app-attest,true,A demo of Apple's App Attest using SwiftUI and Vapor.,Validate Pull Request
+Capture,true,A small utility app for Apple Platforms which captures metadata when shooting photos on 35mm film.,Build and Test default scheme using any available iPhone simulator
 Cards,true,A SharePlay enabled card game for iOS & macOS.,Build and Test default scheme using any available iPhone simulator
+Choose,true,Helps users to decide how to vote by swiping on manifesto policies. iMessage stickers allow users to encourage their friends to vote. Available for iOS (Swift).,Validate Pull Request
+Conferences,true,An app for managing talk submissions to iOS conferences,Build and Test default scheme using any available iPhone simulator
 Crescendo,true,"This app allows you to play Apple Music playlists for timed musical party games, such as pass the parcel or musical chairs.",Validate Pull Request
 personal-infra,true,A repository for managing infrastructure related to my personal projects using code.,Plan Infrastructure Updates
+Website,true,"The repository for my personal website, built with Publish by John Sundell.",build
+Versioning,true,A Swift Package created for enforcing versioning of codebases using conventional commits.,build
