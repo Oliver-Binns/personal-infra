@@ -11,11 +11,11 @@ provider "github" {
 import {
   for_each = tomap({ for repo in local.repositories : repo.name => repo if repo.imported == "true" })
 
-  to = github_repository.ios[each.value.name]
+  to = github_repository.public[each.value.name]
   id = each.value.name
 }
 
-resource "github_repository" "ios" {
+resource "github_repository" "public" {
   for_each = tomap({ for repo in local.repositories : repo.name => repo })
 
   name        = each.value.name
@@ -36,8 +36,8 @@ resource "github_repository" "ios" {
   has_wiki = false
 }
 
-resource "github_branch_protection" "trunk" {
-  for_each = github_repository.ios
+resource "github_branch_protection" "public" {
+  for_each = github_repository.public
 
   repository_id = each.value.node_id
   pattern       = "main"
