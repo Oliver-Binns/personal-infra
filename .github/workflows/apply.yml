@@ -15,6 +15,7 @@ env:
 
 jobs:
   apply:
+    name: Apply Infrastructure Updates
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
