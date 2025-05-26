@@ -31,10 +31,18 @@ resource "github_repository" "public" {
 
   license_template = "mit"
 
-  has_issues = false
+  has_issues   = false
   has_projects = false
-  has_wiki = false
+  has_wiki     = false
 }
+
+import {
+  for_each = tomap({ for repo in local.repositories : repo.name => repo if repo.imported == "true" })
+
+  to = github_branch_protection.public[each.value.name]
+  id = "${each.value.name}:main"
+}
+
 
 resource "github_branch_protection" "public" {
   for_each = github_repository.public
@@ -42,7 +50,8 @@ resource "github_branch_protection" "public" {
   repository_id = each.value.node_id
   pattern       = "main"
 
-  require_signed_commits = true
+  require_signed_commits          = true
+  require_conversation_resolution = true
 
   required_pull_request_reviews {
     require_code_owner_reviews = true
