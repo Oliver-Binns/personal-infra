@@ -12,6 +12,7 @@ env:
   TF_CLOUD_ORGANIZATION: "oliver-binns"
   TF_TOKEN_app_terraform_io: "${{ secrets.TF_API_TOKEN }}"
   TF_WORKSPACE: "prod"
+  TF_VAR_github_token: ${{ secrets.GH_TOKEN }}
 
 jobs:
   plan:
@@ -49,7 +50,6 @@ jobs:
         env:
           PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             // 1. Retrieve existing bot comments for the PR
             const { data: comments } = await github.rest.issues.listComments({

@@ -1,0 +1,3 @@
+name,imported,description,status_check
+Crescendo,true,"This app allows you to play Apple Music playlists for timed musical party games, such as pass the parcel or musical chairs.",Validate Pull Request
+personal-infra,true,A repository for managing infrastructure related to my personal projects using code.,Plan Infrastructure Updates
