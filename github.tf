@@ -9,7 +9,7 @@ provider "github" {
 }
 
 import {
-  for_each = tomap({ for repo in local.repositories : repo.name => repo })
+  for_each = tomap({ for repo in local.repositories : repo.name => repo if repo.imported == "true" })
 
   to = github_repository.ios[each.value.name]
   id = each.value.name
@@ -30,6 +30,10 @@ resource "github_repository" "ios" {
   delete_branch_on_merge = true
 
   license_template = "mit"
+
+  has_issues = false
+  has_projects = false
+  has_wiki = false
 }
 
 resource "github_branch_protection" "trunk" {
