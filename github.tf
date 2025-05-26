@@ -9,14 +9,14 @@ provider "github" {
 }
 
 import {
-  for_each = tomap({ for repo in local.repositories : repo.name => repo if repo.imported == "true" })
+  for_each = { for k, v in local.repositories : k => v if v.imported == "true" }
 
   to = github_repository.public[each.value.name]
   id = each.value.name
 }
 
 resource "github_repository" "public" {
-  for_each = tomap({ for repo in local.repositories : repo.name => repo })
+  for_each = local.repositories
 
   name        = each.value.name
   description = each.value.description
@@ -37,7 +37,7 @@ resource "github_repository" "public" {
 }
 
 import {
-  for_each = tomap({ for repo in local.repositories : repo.name => repo if repo.imported == "true" })
+  for_each = { for k, v in local.repositories : k => v if v.imported == "true" }
 
   to = github_branch_protection.public[each.value.name]
   id = "${each.value.name}:main"
@@ -50,10 +50,19 @@ resource "github_branch_protection" "public" {
   repository_id = each.value.node_id
   pattern       = "main"
 
+  enforce_admins = true
+
   require_signed_commits          = true
   require_conversation_resolution = true
 
   required_pull_request_reviews {
     require_code_owner_reviews = true
+  }
+
+  required_status_checks {
+    strict = true
+    contexts = [
+      local.repositories[each.value.name].status_check
+    ]
   }
 }
