@@ -21,6 +21,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
+      
+      - name: Sort CSV files
+        run: ./sort-csvs.sh
 
       - name: Create service-account.json
         env:
