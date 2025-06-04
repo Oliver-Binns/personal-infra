@@ -1,5 +1,6 @@
 name,imported,description,status_check
 app-attest,true,A demo of Apple's App Attest using SwiftUI and Vapor.,Validate Pull Request
+appstore-go,false,Go implementation for making resource requests to App Store Connect,build+Validate Pull Request
 Capture,true,A small utility app for Apple Platforms which captures metadata when shooting photos on 35mm film.,Build and Test default scheme using any available iPhone simulator
 Cards,true,A SharePlay enabled card game for iOS & macOS.,Build and Test default scheme using any available iPhone simulator
 Choose,true,Helps users to decide how to vote by swiping on manifesto policies. iMessage stickers allow users to encourage their friends to vote. Available for iOS (Swift).,Validate Pull Request
