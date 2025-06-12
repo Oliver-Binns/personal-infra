@@ -61,7 +61,7 @@ resource "github_branch_protection" "public" {
   }
 
   required_status_checks {
-    strict   = true
+    strict   = false
     contexts = split("+", local.repositories[each.value.name].status_check)
   }
 }
