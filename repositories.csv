@@ -1,13 +1,14 @@
-name,imported,description,status_check
-app-attest,true,A demo of Apple's App Attest using SwiftUI and Vapor.,Validate Pull Request
-appstore-go,false,Go implementation for making resource requests to App Store Connect,build+Validate Pull Request
-Capture,true,A small utility app for Apple Platforms which captures metadata when shooting photos on 35mm film.,Build and Test default scheme using any available iPhone simulator
-Cards,true,A SharePlay enabled card game for iOS & macOS.,Build and Test default scheme using any available iPhone simulator
-Choose,true,Helps users to decide how to vote by swiping on manifesto policies. iMessage stickers allow users to encourage their friends to vote. Available for iOS (Swift).,Validate Pull Request
-Conferences,true,An app for managing talk submissions to iOS conferences,Build and Test default scheme using any available iPhone simulator
-Crescendo,true,"This app allows you to play Apple Music playlists for timed musical party games, such as pass the parcel or musical chairs.",Validate Pull Request
-googleplay-go,true,Go implementation for making resource requests to the Google Play Console,build+Validate Pull Request
-personal-infra,true,A repository for managing infrastructure related to my personal projects using code.,Plan Infrastructure Updates
-terraform-provider-googleplay,true,Terraform provider for managing resources in Google Play Console.,Build+generate+Validate Pull Request+Terraform Provider Acceptance Tests (1.0.*)+Terraform Provider Acceptance Tests (1.1.*)+Terraform Provider Acceptance Tests (1.2.*)+Terraform Provider Acceptance Tests (1.3.*)+Terraform Provider Acceptance Tests (1.4.*)
-Versioning,true,A Swift Package created for enforcing versioning of codebases using conventional commits.,Validate commits and run tests
-Website,true,"The repository for my personal website, built with Publish by John Sundell.",build
+name,imported,template,description,status_check
+app-attest,true,,A demo of Apple's App Attest using SwiftUI and Vapor.,Validate Pull Request
+appstore-go,false,,Go implementation for making resource requests to App Store Connect,build+Validate Pull Request
+Capture,true,,A small utility app for Apple Platforms which captures metadata when shooting photos on 35mm film.,Build and Test default scheme using any available iPhone simulator
+Cards,true,,A SharePlay enabled card game for iOS & macOS.,Build and Test default scheme using any available iPhone simulator
+Choose,true,,Helps users to decide how to vote by swiping on manifesto policies. iMessage stickers allow users to encourage their friends to vote. Available for iOS (Swift).,Validate Pull Request
+Conferences,true,,An app for managing talk submissions to iOS conferences,Build and Test default scheme using any available iPhone simulator
+Crescendo,true,,"This app allows you to play Apple Music playlists for timed musical party games, such as pass the parcel or musical chairs.",Validate Pull Request
+googleplay-go,true,,Go implementation for making resource requests to the Google Play Console,build+Validate Pull Request
+personal-infra,true,,A repository for managing infrastructure related to my personal projects using code.,Plan Infrastructure Updates
+terraform-provider-appstore,false,hashicorp/terraform-provider-scaffolding-framework,Terraform provider for managing resources in Apple Developer portal / App Store Connect.,Build+generate+Validate Pull Request+Terraform Provider Acceptance Tests (1.0.*)+Terraform Provider Acceptance Tests (1.1.*)+Terraform Provider Acceptance Tests (1.2.*)+Terraform Provider Acceptance Tests (1.3.*)+Terraform Provider Acceptance Tests (1.4.*)
+terraform-provider-googleplay,true,hashicorp/terraform-provider-scaffolding-framework,Terraform provider for managing resources in Google Play Console.,Build+generate+Validate Pull Request+Terraform Provider Acceptance Tests (1.0.*)+Terraform Provider Acceptance Tests (1.1.*)+Terraform Provider Acceptance Tests (1.2.*)+Terraform Provider Acceptance Tests (1.3.*)+Terraform Provider Acceptance Tests (1.4.*)
+Versioning,true,,A Swift Package created for enforcing versioning of codebases using conventional commits.,Validate commits and run tests
+Website,true,,"The repository for my personal website, built with Publish by John Sundell.",build
