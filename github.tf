@@ -34,6 +34,16 @@ resource "github_repository" "public" {
   has_issues   = false
   has_projects = false
   has_wiki     = false
+
+  dynamic "template" {
+    for_each = each.value.template == "" ? [] : [each.value.template]
+
+    content {
+      include_all_branches = false
+      owner                = split("/", each.value.template)[0]
+      repository           = split("/", each.value.template)[1]
+    }
+  }
 }
 
 import {
