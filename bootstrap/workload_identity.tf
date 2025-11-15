@@ -30,7 +30,7 @@ resource "google_service_account" "apply" {
 resource "google_service_account_iam_member" "plan" {
   service_account_id = google_service_account.plan.name
   role               = "roles/iam.workloadIdentityUser"
-  member             = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.plan.name}/attribute.repository/personal-infra"
+  member             = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.plan.name}/attribute.repository/Oliver-Binns/personal-infra"
 }
 
 resource "google_storage_bucket_iam_member" "tf_state_plan_read" {
