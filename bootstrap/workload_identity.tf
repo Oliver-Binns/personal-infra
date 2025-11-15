@@ -25,12 +25,26 @@ resource "google_service_account" "apply" {
   display_name = "Terraform Apply"
 }
 
-# Permissions
+# Permissions - Plan
 
 resource "google_service_account_iam_member" "plan" {
   service_account_id = google_service_account.plan.name
   role               = "roles/iam.workloadIdentityUser"
   member             = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.plan.name}/attribute.repository/personal-infra"
+}
+
+resource "google_storage_bucket_iam_member" "tf_state_plan_read" {
+  bucket = google_storage_bucket.state.name
+  role   = "roles/storage.objectViewer"
+  member = "serviceAccount:${google_service_account.plan.email}"
+}
+
+resource "google_storage_bucket_iam_member" "service_account_tf_state_plan" {
+  bucket = google_storage_bucket.state.name
+
+  # write permissions are required for state lock
+  role   = "roles/storage.objectUser"
+  member = "serviceAccount:${google_service_account.plan.email}"
 }
 
 resource "google_project_iam_member" "plan" {
