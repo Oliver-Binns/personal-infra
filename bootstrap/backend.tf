@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket  = "oliverbinns-tf-state"
-    prefix  = "terraform/state"
+    bucket = "oliverbinns-tf-state"
+    prefix = "terraform/state"
   }
 }
