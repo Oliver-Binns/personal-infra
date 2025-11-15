@@ -45,6 +45,25 @@ resource "google_project_iam_member" "plan" {
   role    = each.value
 }
 
+resource "google_project_iam_custom_role" "plan" {
+  role_id     = "TFPlan"
+  title       = "TF Plan"
+  description = "Custom role to support additional actions when planning"
+  permissions = toset([
+    "serviceusage.services.get",
+    "serviceusage.services.list",
+    "storage.buckets.get",
+    "storage.buckets.getIamPolicy",
+    "storage.objects.getIamPolicy",
+  ])
+}
+
+resource "google_project_iam_member" "plan_role" {
+  project = google_project.default.project_id
+  member  = "serviceAccount:${google_service_account.plan.email}"
+  role    = google_project_iam_custom_role.plan.name
+}
+
 # Identity Providers - GitHub
 
 resource "google_iam_workload_identity_pool_provider" "plan" {
@@ -61,7 +80,7 @@ resource "google_iam_workload_identity_pool_provider" "plan" {
 
   attribute_condition = <<-EOT
       attribute.org == "Oliver-Binns"
-      && attribute.respository == "personal-infra"
+      && attribute.repository == "Oliver-Binns/personal-infra"
     EOT
 
   oidc {
