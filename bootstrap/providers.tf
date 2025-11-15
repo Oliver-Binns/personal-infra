@@ -3,7 +3,7 @@ provider "google" {
 }
 
 resource "google_project" "default" {
-  name       = "My Project"
+  name       = "personal-infra"
   project_id = "seraphic-elixir-305011"
   org_id     = "943988285976"
 
