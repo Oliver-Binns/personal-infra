@@ -1,4 +1,4 @@
-provider "google" { }
+provider "google" {}
 
 data "google_organization" "default" {
   domain = "oliverbinns.info"
