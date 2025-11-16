@@ -47,6 +47,18 @@ resource "google_storage_bucket_iam_member" "service_account_tf_state_plan" {
   member = "serviceAccount:${google_service_account.plan.email}"
 }
 
+resource "google_organization_iam_member" "plan" {
+  for_each = toset([
+    "roles/viewer",
+    "roles/billing.viewer",
+    "roles/iam.organizationRoleViewer",
+  ])
+
+  org_id = data.google_organization.default.org_id
+  member = "serviceAccount:${google_service_account.plan.email}"
+  role   = each.value
+}
+
 resource "google_project_iam_member" "plan" {
   for_each = toset([
     "roles/iam.roleViewer",
