@@ -61,7 +61,7 @@ jobs:
             })
 
             // 2. Prepare format of the comment
-            const output = `Bootstrap GCloud
+            const output = `### Bootstrap GCloud
             #### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
             #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
             #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
