@@ -2,7 +2,7 @@
 
 resource "google_iam_workload_identity_pool" "provider" {
   workload_identity_pool_id = "terraform-provider-googleplay"
-  display_name              = "terraform-provider-googleplay testing workflow"
+  display_name              = "terraform-provider-googleplay"
   description               = "Pool for terraform-provider-googleplay workflows"
 }
 
