@@ -8,6 +8,11 @@ resource "googleplay_user" "oliver" {
   global_permissions = ["CAN_MANAGE_PERMISSIONS_GLOBAL"]
 }
 
+resource "googleplay_user" "provider" {
+  email              = google_service_account.provider.email
+  global_permissions = ["CAN_MANAGE_PERMISSIONS_GLOBAL"]
+}
+
 resource "googleplay_user" "service_account" {
   email              = "google-play-console@seraphic-elixir-305011.iam.gserviceaccount.com"
   global_permissions = ["CAN_MANAGE_PERMISSIONS_GLOBAL"]
