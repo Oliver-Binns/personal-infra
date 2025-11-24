@@ -48,7 +48,7 @@ resource "google_iam_workload_identity_pool_provider" "provider" {
   }
 
   attribute_condition = <<-EOT
-      && attribute.org == "Oliver-Binns"
+      attribute.org == "Oliver-Binns"
       && attribute.repository == "Oliver-Binns/terraform-provider-googleplay"
     EOT
 
