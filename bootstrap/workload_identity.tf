@@ -111,6 +111,7 @@ resource "google_organization_iam_member" "apply" {
     "roles/viewer",
     "roles/billing.admin",
     "roles/iam.organizationRoleAdmin",
+    "roles/resourcemanager.projectCreator",
   ])
 
   org_id = data.google_organization.default.org_id
