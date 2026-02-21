@@ -26,6 +26,12 @@ resource "google_project_service" "wedding" {
   disable_on_destroy = false
 }
 
+resource "google_project_iam_member" "wedding-plan" {
+  project = google_project.wedding.project_id
+  member  = data.google_service_account.plan.member
+  role    = "roles/serviceusage.serviceUsageConsumer"
+}
+
 resource "google_firebase_project" "wedding" {
   provider = google-beta
   project  = google_project.wedding.project_id
