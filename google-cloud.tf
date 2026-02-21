@@ -2,6 +2,15 @@ provider "google" {
   project = local.google_project_id
 }
 
+provider "google-beta" {
+  user_project_override = true
+}
+
+provider "google-beta" {
+  alias                 = "no_user_project_override"
+  user_project_override = false
+}
+
 data "google_organization" "default" {
   domain = "oliverbinns.info"
 }
