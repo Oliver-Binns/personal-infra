@@ -1,4 +1,4 @@
-name: Plan GCloud Bootstrap Infrastructure
+name: Plan GCloud Bootstrap
 
 on:
   pull_request:
@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   plan:
-    name: Plan GCloud Bootstrap Infrastructure
+    name: Plan GCloud Bootstrap
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
