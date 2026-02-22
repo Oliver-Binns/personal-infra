@@ -41,3 +41,10 @@ resource "google_firebase_project" "wedding" {
     google_project_service.wedding
   ]
 }
+
+resource "google_firestore_database" "database" {
+  project     = google_project.wedding.project_id
+  name        = "rsvp"
+  location_id = "europe-west2"
+  type        = "FIRESTORE_NATIVE"
+}
