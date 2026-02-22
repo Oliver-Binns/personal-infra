@@ -22,7 +22,7 @@ resource "google_service_account_iam_member" "wedding_deploy" {
 
 resource "google_project_iam_member" "wedding_deploy" {
   for_each = toset([
-    "roles/iam.serviceAccountTokenCreator",
+    "roles/iam.serviceAccountUser",
     "roles/cloudfunctions.developer"
   ])
 
