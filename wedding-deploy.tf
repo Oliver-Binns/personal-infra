@@ -25,7 +25,8 @@ resource "google_project_iam_member" "wedding_deploy" {
     "roles/iam.serviceAccountUser",
     "roles/cloudbuild.builds.builder",
     "roles/cloudfunctions.developer",
-    "roles/firebase.developAdmin"
+    "roles/firebase.developAdmin",
+    "roles/serviceusage.serviceUsageConsumer"
   ])
 
   project = google_project.wedding.project_id
