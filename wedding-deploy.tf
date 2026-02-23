@@ -23,6 +23,7 @@ resource "google_service_account_iam_member" "wedding_deploy" {
 resource "google_project_iam_member" "wedding_deploy" {
   for_each = toset([
     "roles/iam.serviceAccountUser",
+    "roles/cloudbuild.builds.builder",
     "roles/cloudfunctions.developer"
   ])
 
