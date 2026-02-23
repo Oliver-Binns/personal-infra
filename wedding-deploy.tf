@@ -24,7 +24,8 @@ resource "google_project_iam_member" "wedding_deploy" {
   for_each = toset([
     "roles/iam.serviceAccountUser",
     "roles/cloudbuild.builds.builder",
-    "roles/cloudfunctions.developer"
+    "roles/cloudfunctions.developer",
+    "roles/firebase.developAdmin"
   ])
 
   project = google_project.wedding.project_id
