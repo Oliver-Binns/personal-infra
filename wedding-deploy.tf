@@ -26,6 +26,7 @@ resource "google_project_iam_member" "wedding_deploy" {
     "roles/cloudbuild.builds.builder",
     "roles/cloudfunctions.developer",
     "roles/firebase.developAdmin",
+    "roles/firebaseextensions.developer",
     "roles/serviceusage.serviceUsageConsumer"
   ])
 
