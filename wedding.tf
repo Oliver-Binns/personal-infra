@@ -53,3 +53,9 @@ resource "google_firestore_database" "database" {
   location_id = "europe-west2"
   type        = "FIRESTORE_NATIVE"
 }
+
+resource "google_firebase_web_app" "basic" {
+  provider     = google-beta
+  project      = google_project.wedding.project_id
+  display_name = "Happily Ever After"
+}
