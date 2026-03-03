@@ -59,3 +59,10 @@ resource "google_firebase_web_app" "basic" {
   project      = google_project.wedding.project_id
   display_name = "Happily Ever After"
 }
+
+resource "google_firebase_apple_app" "wedding" {
+  provider     = google-beta
+  project      = google_project.wedding.project_id
+  display_name = "Happily Ever After"
+  bundle_id    = "uk.co.oliverbinns.Wedding"
+}
