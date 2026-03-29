@@ -54,6 +54,6 @@ resource "googleplay_app_iam" "wedding_googleplay_deploy" {
   app_id  = "4975313787980303395"
   user_id = googleplay_user.wedding_googleplay_deploy.email
   permissions = [
-    "CAN_MANAGE_PRODUCTION_RELEASES"
+    "CAN_MANAGE_TRACK_APKS"
   ]
 }
