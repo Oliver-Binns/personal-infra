@@ -5,8 +5,10 @@ resource "google_service_account" "googleplay_deploy" {
   display_name = "Google Play Deploy"
 }
 
-resource "google_service_account_key" "googleplay_deploy" {
+resource "google_service_account_iam_member" "googleplay_deploy" {
   service_account_id = google_service_account.googleplay_deploy.name
+  role               = "roles/iam.workloadIdentityUser"
+  member             = "principal://iam.googleapis.com/${google_iam_workload_identity_pool.wedding_deploy.name}/subject/repo:Oliver-Binns/happily-ever-after:ref:refs/heads/main"
 }
 
 resource "googleplay_user" "googleplay_deploy" {
