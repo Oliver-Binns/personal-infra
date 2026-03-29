@@ -46,7 +46,8 @@ resource "google_service_account_iam_member" "wedding_googleplay_deploy" {
 }
 
 resource "googleplay_user" "wedding_googleplay_deploy" {
-  email = google_service_account.wedding_googleplay_deploy.email
+  email              = google_service_account.wedding_googleplay_deploy.email
+  global_permissions = ["CAN_MANAGE_PRODUCTION_RELEASES_GLOBAL"]
 }
 
 resource "googleplay_app_iam" "wedding_googleplay_deploy" {
