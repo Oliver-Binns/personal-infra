@@ -1,4 +1,4 @@
-resource "google_iam_workload_identity_pool" "googleplay_deploy" {
+resource "google_iam_workload_identity_pool" "wedding_googleplay_deploy" {
   project = google_project.wedding.project_id
 
   workload_identity_pool_id = "googleplay-deploy"
@@ -7,10 +7,10 @@ resource "google_iam_workload_identity_pool" "googleplay_deploy" {
   disabled                  = false
 }
 
-resource "google_iam_workload_identity_pool_provider" "googleplay_deploy" {
+resource "google_iam_workload_identity_pool_provider" "wedding_googleplay_deploy" {
   project = google_project.wedding.project_id
 
-  workload_identity_pool_id          = google_iam_workload_identity_pool.googleplay_deploy.workload_identity_pool_id
+  workload_identity_pool_id          = google_iam_workload_identity_pool.wedding_googleplay_deploy.workload_identity_pool_id
   workload_identity_pool_provider_id = "github-actions"
   display_name                       = "GitHub Actions"
   description                        = "OIDC identity pool provider for Google Play Deploys in GitHub Actions"
@@ -32,26 +32,26 @@ resource "google_iam_workload_identity_pool_provider" "googleplay_deploy" {
   }
 }
 
-resource "google_service_account" "googleplay_deploy" {
+resource "google_service_account" "wedding_googleplay_deploy" {
   project = google_project.wedding.project_id
 
   account_id   = "googleplay-deploy"
   display_name = "Google Play Deploy"
 }
 
-resource "google_service_account_iam_member" "googleplay_deploy" {
-  service_account_id = google_service_account.googleplay_deploy.name
+resource "google_service_account_iam_member" "wedding_googleplay_deploy" {
+  service_account_id = google_service_account.wedding_googleplay_deploy.name
   role               = "roles/iam.workloadIdentityUser"
-  member             = "principal://iam.googleapis.com/${google_iam_workload_identity_pool.googleplay_deploy.name}/subject/repo:Oliver-Binns/happily-ever-after:ref:refs/heads/main"
+  member             = "principal://iam.googleapis.com/${google_iam_workload_identity_pool.wedding_googleplay_deploy.name}/subject/repo:Oliver-Binns/happily-ever-after:ref:refs/heads/main"
 }
 
-resource "googleplay_user" "googleplay_deploy" {
-  email = google_service_account.googleplay_deploy.email
+resource "googleplay_user" "wedding_googleplay_deploy" {
+  email = google_service_account.wedding_googleplay_deploy.email
 }
 
-resource "googleplay_app_iam" "googleplay_deploy" {
+resource "googleplay_app_iam" "wedding_googleplay_deploy" {
   app_id  = "4975313787980303395"
-  user_id = googleplay_user.googleplay_deploy.email
+  user_id = googleplay_user.wedding_googleplay_deploy.email
   permissions = [
     "CAN_MANAGE_PRODUCTION_RELEASES"
   ]
