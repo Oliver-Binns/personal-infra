@@ -66,3 +66,10 @@ resource "google_firebase_apple_app" "wedding" {
   display_name = "Happily Ever After"
   bundle_id    = "uk.co.oliverbinns.Wedding"
 }
+
+resource "google_firebase_android_app" "wedding" {
+  provider     = google-beta
+  project      = google_project.wedding.project_id
+  display_name = "Happily Ever After"
+  package_name = "uk.co.oliverbinns.wedding"
+}
