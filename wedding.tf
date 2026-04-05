@@ -14,6 +14,7 @@ resource "google_project_service" "wedding" {
   provider = google-beta.no_user_project_override
   project  = google_project.wedding.project_id
   for_each = toset([
+    "androidpublisher.googleapis.com",
     "artifactregistry.googleapis.com",
     "cloudbilling.googleapis.com",
     "cloudbuild.googleapis.com",
@@ -21,8 +22,8 @@ resource "google_project_service" "wedding" {
     "eventarc.googleapis.com",
     "firebase.googleapis.com",
     "firebaseextensions.googleapis.com",
-    # Enabling the ServiceUsage API allows the new project to be quota checked from now on.
     "run.googleapis.com",
+    # Enabling the ServiceUsage API allows the new project to be quota checked from now on.
     "serviceusage.googleapis.com",
   ])
   service = each.key
