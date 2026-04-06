@@ -59,4 +59,8 @@ resource "googleplay_app_iam" "wedding_googleplay_deploy" {
     "CAN_VIEW_APP_QUALITY",
     "CAN_VIEW_NON_FINANCIAL_DATA"
   ]
+
+  lifecycle {
+    ignore_changes = all
+  }
 }
