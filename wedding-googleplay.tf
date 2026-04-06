@@ -61,8 +61,6 @@ resource "googleplay_app_iam" "wedding_googleplay_deploy" {
   ]
 
   lifecycle {
-    ignore_changes = [
-      id
-    ]
+    ignore_changes = all
   }
 }
