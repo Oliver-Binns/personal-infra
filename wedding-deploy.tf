@@ -36,6 +36,12 @@ resource "google_project_iam_member" "wedding_deploy" {
   role    = each.value
 }
 
+resource "google_project_iam_member" "wedding_runtime" {
+  project = google_project.wedding.project_id
+  member  = "serviceAccount:${google_project.wedding.number}-compute@developer.gserviceaccount.com"
+  role    = "roles/secretmanager.secretAccessor"
+}
+
 resource "google_iam_workload_identity_pool_provider" "wedding_deploy" {
   project = google_project.wedding.project_id
 
