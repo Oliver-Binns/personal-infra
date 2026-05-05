@@ -23,6 +23,7 @@ resource "google_project_service" "wedding" {
     "firebase.googleapis.com",
     "firebaseextensions.googleapis.com",
     "run.googleapis.com",
+    "secretmanager.googleapis.com",
     # Enabling the ServiceUsage API allows the new project to be quota checked from now on.
     "serviceusage.googleapis.com",
   ])
