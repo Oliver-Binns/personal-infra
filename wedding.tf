@@ -22,10 +22,12 @@ resource "google_project_service" "wedding" {
     "eventarc.googleapis.com",
     "firebase.googleapis.com",
     "firebaseextensions.googleapis.com",
+    "firebasestorage.googleapis.com",
     "run.googleapis.com",
     "secretmanager.googleapis.com",
     # Enabling the ServiceUsage API allows the new project to be quota checked from now on.
     "serviceusage.googleapis.com",
+    "storage.googleapis.com",
   ])
   service = each.key
 
@@ -74,4 +76,21 @@ resource "google_firebase_android_app" "wedding" {
   project      = google_project.wedding.project_id
   display_name = "Happily Ever After"
   package_name = "uk.co.oliverbinns.wedding"
+}
+
+resource "google_storage_bucket" "wedding_photos" {
+  project       = google_project.wedding.project_id
+  name          = "${google_project.wedding.project_id}-photos"
+  location      = "europe-west2"
+  force_destroy = false
+
+  depends_on = [
+    google_project_service.wedding
+  ]
+}
+
+resource "google_firebase_storage_bucket" "wedding_photos" {
+  provider  = google-beta
+  project   = google_project.wedding.project_id
+  bucket_id = google_storage_bucket.wedding_photos.name
 }
