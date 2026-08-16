@@ -46,6 +46,23 @@ resource "google_project_iam_member" "wedding_runtime" {
   role    = "roles/secretmanager.secretAccessor"
 }
 
+# Firebase's own deploy tooling normally grants these bindings to Google-managed
+# service agents automatically, but that requires project owner permissions.
+# Since deploys run as the non-owner wedding_deploy service account, grant them
+# here instead so `firebase deploy` doesn't fail trying to set them itself.
+resource "google_project_iam_member" "wedding_service_agents" {
+  for_each = {
+    pubsub_publisher          = { member = "serviceAccount:service-${google_project.wedding.number}@gs-project-accounts.iam.gserviceaccount.com", role = "roles/pubsub.publisher" }
+    pubsub_token_creator      = { member = "serviceAccount:service-${google_project.wedding.number}@gcp-sa-pubsub.iam.gserviceaccount.com", role = "roles/iam.serviceAccountTokenCreator" }
+    compute_run_invoker       = { member = "serviceAccount:${google_project.wedding.number}-compute@developer.gserviceaccount.com", role = "roles/run.invoker" }
+    compute_eventarc_receiver = { member = "serviceAccount:${google_project.wedding.number}-compute@developer.gserviceaccount.com", role = "roles/eventarc.eventReceiver" }
+  }
+
+  project = google_project.wedding.project_id
+  member  = each.value.member
+  role    = each.value.role
+}
+
 resource "google_iam_workload_identity_pool_provider" "wedding_deploy" {
   project = google_project.wedding.project_id
 
