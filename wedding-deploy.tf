@@ -22,11 +22,15 @@ resource "google_service_account_iam_member" "wedding_deploy" {
 
 resource "google_project_iam_member" "wedding_deploy" {
   for_each = toset([
+    "roles/eventarc.eventReceiver",
     "roles/iam.serviceAccountUser",
     "roles/cloudbuild.builds.builder",
     "roles/cloudfunctions.developer",
     "roles/firebase.developAdmin",
     "roles/firebaseextensions.developer",
+    "roles/iam.serviceAccountTokenCreator",
+    "roles/pubsub.publisher",
+    "roles/run.invoker",
     "roles/secretmanager.secretAccessor",
     "roles/serviceusage.serviceUsageConsumer"
   ])
