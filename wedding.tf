@@ -51,6 +51,31 @@ resource "google_firebase_project" "wedding" {
   ]
 }
 
+import {
+  to = google_artifact_registry_repository.gcf_artifacts
+  id = "projects/obinns-happily-ever-after/locations/europe-west2/repositories/gcf-artifacts"
+}
+
+# Your matching resource definition:
+resource "google_artifact_registry_repository" "gcf_artifacts" {
+  provider      = google-beta
+  project       = "obinns-happily-ever-after"
+  location      = "europe-west2"
+  repository_id = "gcf-artifacts"
+  format        = "DOCKER"
+
+  cleanup_policy_dry_run = false
+
+  cleanup_policies {
+    id     = "delete-images-older-than-1-day"
+    action = "DELETE"
+    condition {
+      tag_state  = "ANY"
+      older_than = "86400s"
+    }
+  }
+}
+
 resource "google_firestore_database" "database" {
   project     = google_project.wedding.project_id
   name        = "rsvp"
