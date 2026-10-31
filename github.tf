@@ -31,7 +31,7 @@ resource "github_repository" "public" {
 
   license_template = "mit"
 
-  has_issues   = false
+  has_issues   = true
   has_projects = false
   has_wiki     = false
 
